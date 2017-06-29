@@ -6,7 +6,7 @@
    function count(n1){
       return function (n2){
         count.result = n1 * n2;
-        count(n1*n2)
+        return count(n1*n2)
       }
     }
    ```
