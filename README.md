@@ -10,11 +10,11 @@
       }
     }
    ```
- 
- 2. window.open 拦截
+
+2. window.open 拦截
 
    > window.open 在自动触发的时候和在异步回调调用处理中会被拦截，只有在用户和窗口有交互事件的时候触发open 才不会被拦截。
-   
+
    ```js
       // 这样不会被拦截
       btn.onClick = function(){
@@ -30,3 +30,70 @@
          })
       }
    ```
+
+3. 将字符串"fileName" 转换成 "FileName"
+
+  ```js
+  str = str.charAt(0).toUpperCase() + str.substr(1)
+  ```
+
+4. 将数组[1,2,2,3,3,3,4,4,4,4]中两个相同的值去重， 使之成为[1,2,2,3,3,4,4]
+
+  ```js
+  var obj = {};
+  var newArr = [];
+
+  for(var i = 0, len = arr.length; i < len; i++){
+  var item = arr[i];
+
+  if(obj[item]){
+  if(obj[item] != 2){
+  obj[item] += 1;
+  newArr.push(item);
+  }
+  }else{
+  obj[item] = 1;
+  newArr.push(item)
+  }
+  }
+  console.log(newArr)
+  ```
+
+5. 数组[0,1,2,3....51] 随机等分成4等份 使之成为[[5,6..],[],[],[]]
+
+  ```js
+  var arr = Array.from(new Array(52),function(value, index){return index});
+  var newArr = [];
+  // 思路一
+  for(var i =  0, len = arr.length; i < len; i++){
+  var item = arr[Math.floor(Math.random * arr.length)];
+  var index = i % 4;
+
+  if(!Array.isArray(newArr[index])){
+  newArr[index] = [item];
+  }else{
+  newArr[index].push(item);
+  }
+  }
+
+  // 思路二
+  var l = arr.length / 4;
+  arr.sort(function(){
+  return Math.random - 0.5;
+  });
+
+  while(arr.length > 0){
+  newArr.push(arr.splice(0, l));
+  }
+  ```
+6. 在下面if代码库中填写任意代码使其打印出 "hello world"(允许多行)
+
+  ```js
+   if(_____){
+    console.log("hello");
+   }else{
+    console.log("world")
+   }
+
+   (function(){console.log("hello")}())
+  ```
